@@ -1,0 +1,18 @@
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  #root {
+    margin-left: 25%;
+  }
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.round-lg {
+  border-radius: 1em;
+}
+
+.round-full {
+  border-radius: 999px;
+}

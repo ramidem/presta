@@ -1,5 +1,6 @@
 import React from "react";
-import "./../";
+import "./../css/SideBarNav.css";
+import { NavLink } from "react-router-dom";
 
 const SideBarNav = (props) => {
   return (
@@ -17,10 +18,12 @@ const SideBarNav = (props) => {
 
       <ul class="sidebarnav__list list-group list-group-flush">
         <li class="list-group-item">
-          <a href="/">cars</a>
+          <NavLink exact to="/">
+            Cars
+          </NavLink>
         </li>
         <li class="list-group-item">
-          <a href="/">reservations</a>
+          <NavLink to="/reservations">Reservation</NavLink>
         </li>
         <li class="list-group-item">
           <a href="/">account</a>
