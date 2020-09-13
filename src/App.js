@@ -1,9 +1,13 @@
 import React from "react";
+import Navbar from "./components/partials/Navbar";
+import SideBarNav from "./components/partials/SideBarNav";
 
 function App() {
   return (
     <div>
-      <h1>Hello World!</h1>
+      {/* display on mobile only */}
+      <Navbar />
+      <SideBarNav />
     </div>
   );
 }

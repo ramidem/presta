@@ -1,0 +1,25 @@
+.sidebarnav {
+  background-color: white;
+  height: 100vh;
+  width: 25%;
+}
+
+.sidebarnav__brand__img {
+  margin-top: 3em;
+  margin-left: 3em;
+  width: 35%;
+}
+
+.sidebarnav__list {
+  margin-top: 3em;
+  margin-left: 3em;
+  font-size: 0.9rem;
+}
+
+.sidebarnav__list li {
+  padding-left: 0;
+}
+
+.sidebarnav__list li:hover {
+  border-right: 4px solid red;
+}
