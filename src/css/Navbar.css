@@ -1,0 +1,52 @@
+.navbar__bar {
+  overflow: hidden;
+  position: relative;
+}
+
+.navbar__faux_bg {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: #1b1b1b;
+  transform: skew(30deg);
+  margin-left: -35px;
+}
+
+.navbar__bg {
+  width: 250px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  transform: skew(30deg);
+}
+
+.navbar-brand {
+  line-height: 1;
+  background-color: #1b1b1b;
+}
+
+.navbar a span {
+  transform: skew(-30deg);
+}
+
+.navbar__title {
+  font-weight: 600;
+  color: white;
+}
+
+.navbar__slogan {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #d3af37;
+}
+
+.navbar__btn {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
+  background-color: #d3af37;
+}
+
+.navbar__links {
+  color: #d3af37;
+}
