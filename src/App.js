@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 
 import "./css/App.css";
 
@@ -46,7 +47,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar authUser={authUser} />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -58,6 +59,10 @@ function App() {
 
         <Route path="/login">
           <Login authUser={authUser} setAuthUser={setAuthUser} />
+        </Route>
+
+        <Route path="/logout">
+          <Logout setAuthUser={setAuthUser} />
         </Route>
       </Switch>
     </Router>
