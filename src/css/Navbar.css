@@ -47,6 +47,8 @@
   background-color: #d3af37;
 }
 
-.navbar__links {
-  color: #d3af37;
+.navbar__links a {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
 }

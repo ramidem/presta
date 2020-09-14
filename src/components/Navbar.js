@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./../css/Navbar.css";
 
 const Modal = () => {
@@ -48,9 +50,10 @@ const Navbar = () => {
     <>
       <div className="navbar navbar-dark bg-dark p-0">
         <div className="container">
-          <span className="navbar__links navbar-text small ml-auto pr-3 text-uppercase">
+          <span className="navbar__links navbar-text ml-auto pr-3 text-uppercase">
             <a href="/">Reservations</a> / <a href="/">Account</a> /{" "}
-            <a href="/">Logout</a>
+            <a href="/">Logout</a> / <Link to="/register">Sign Up</Link>/{" "}
+            <a href="/">Login</a>
           </span>
         </div>
       </div>
@@ -59,25 +62,25 @@ const Navbar = () => {
         <div className="navbar__faux_bg"></div>
         <div className="container">
           <div className="col-6 navbar__bg">
-            <a
+            <Link
+              to="/"
               className="navbar-brand d-flex flex-column justify-content-center p-3"
-              href="/"
             >
               <span className="navbar__title">PRESTA</span>
               <span className="navbar__slogan m-0">car rental</span>
-            </a>
+            </Link>
           </div>
 
           <button
-            className="navbar__btn btn btn-primary round-full border-0 btn-lg mr-3"
-            data-toggle="modal"
+            className="btn btn-warning round-full border-0 mr-3"
             data-target="#bookNow"
+            data-toggle="modal"
           >
             Book Now
           </button>
-          <Modal />
         </div>
       </nav>
+      <Modal />
     </>
   );
 };

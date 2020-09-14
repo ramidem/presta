@@ -1,3 +1,11 @@
+a {
+  color: #1b1b1b;
+}
+
+a:hover {
+  color: #d3af37;
+  text-decoration: none;
+}
 .bg-white {
   background-color: white;
 }
@@ -13,4 +21,22 @@
 .lambo-yellows {
   color: #d3af37;
   background-color: #b8860b;
+}
+
+.btn-warning {
+  background-color: #d3af37;
+  text-transform: uppercase;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning:visited,
+.btn-warning:focus {
+  color: white;
+  background-color: #b8860b;
+  border: none;
 }
