@@ -62,7 +62,13 @@ const Register = () => {
       })
       .then((data) => {
         // @TODO do something about the returned errors
-        console.log(data);
+        // if (data.error) {
+        //   setError({
+        //     hasError: true,
+        //     color: "danger",
+        //     message: "All fields required",
+        //   });
+        // }
         setIsLoading(false);
       });
   };
