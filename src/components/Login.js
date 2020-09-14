@@ -17,8 +17,8 @@ const Login = (props) => {
               displayName="Password"
             />
 
-            <button className="navbar__btn btn btn-primary round-full border-0 btn-lg my-3">
-              Register
+            <button className="btn btn-warning round-full border-0 mt-3">
+              Login
             </button>
           </form>
         </div>

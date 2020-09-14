@@ -52,8 +52,8 @@ const Navbar = () => {
         <div className="container">
           <span className="navbar__links navbar-text ml-auto pr-3 text-uppercase">
             <a href="/">Reservations</a> / <a href="/">Account</a> /{" "}
-            <a href="/">Logout</a> / <Link to="/register">Sign Up</Link>/{" "}
-            <a href="/">Login</a>
+            <a href="/">Logout</a> / <Link to="/register">Sign Up</Link> /{" "}
+            <Link to="/login">Login</Link>
           </span>
         </div>
       </div>

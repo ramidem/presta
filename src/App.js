@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 
 import "./css/App.css";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
 
         <Route path="/register">
           <Register />
+        </Route>
+
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </Router>
