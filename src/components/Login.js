@@ -3,7 +3,7 @@ import InputGroup from "./partials/InputGroup";
 import { Redirect } from "react-router-dom";
 import AlertMessage from "./partials/AlertMessage";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -57,16 +57,26 @@ const Login = () => {
             color: "danger",
             message: "Please check your credentials",
           });
-        } else {
-          setIsSuccess(true);
         }
 
         return res.json();
       })
       .then((data) => {
-        // @TODO do something about the returned errors
-        // console.log(data);
-        setIsLoading(false);
+        console.log("this data: ", data);
+        if (data.token) {
+          localStorage["appState"] = data.token;
+          props.setAuthUser({
+            isAuth: true,
+            _id: data.user._id,
+            username: data.user.username,
+            fullname: data.user.fullname,
+            email: data.user.email,
+            isAdmin: data.user.isAdmin,
+          });
+          setIsSuccess(true);
+        } else {
+          setIsLoading(false);
+        }
       });
   };
 

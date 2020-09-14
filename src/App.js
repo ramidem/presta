@@ -1,14 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Register from "./components/Register";
-
-import "./css/App.css";
 import Login from "./components/Login";
 
+import "./css/App.css";
+
 function App() {
+  const [authUser, setAuthUser] = useState({
+    isAuth: false,
+    _id: "",
+    username: "",
+    fullname: "",
+    email: "",
+  });
+
+  useEffect(() => {
+    let appState = localStorage["appState"];
+
+    const URL = "https://api-presta-app.herokuapp.com";
+    const HEADERS = {
+      headers: {
+        Authorization: `Bearer ${appState}`,
+      },
+    };
+
+    if (appState) {
+      fetch(`${URL}/users/`, HEADERS)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data._id) {
+            setAuthUser({
+              isAuth: true,
+              _id: data._id,
+              username: data.username,
+              fullname: data.fullname,
+              email: data.email,
+            });
+          }
+        });
+    }
+  }, []);
+
   return (
     <Router>
       <Navbar />
@@ -22,7 +57,7 @@ function App() {
         </Route>
 
         <Route path="/login">
-          <Login />
+          <Login authUser={authUser} setAuthUser={setAuthUser} />
         </Route>
       </Switch>
     </Router>
