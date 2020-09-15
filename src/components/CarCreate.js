@@ -7,10 +7,11 @@ const CarCreate = () => {
     model: "",
     manufacturer: "",
     description: "",
-    size: "",
+    image: "",
     doors: 0,
-    airbags: 0,
+    bags: 0,
     seats: 0,
+    dailyRate: 0,
   });
 
   const [error, setError] = useState({
@@ -21,15 +22,6 @@ const CarCreate = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const URL = "https://api-presta-app.herokuapp.com";
-  const METHOD = {
-    method: "post",
-    body: JSON.stringify(car),
-    headers: {
-      Authorization: `Bearer ${localStorage["appState"]}`,
-    },
-  };
-
   const handleChange = (e) => {
     setCar({
       ...car,
@@ -37,12 +29,40 @@ const CarCreate = () => {
     });
   };
 
+  const handleChangeFile = (e) => {
+    setCar({
+      ...car,
+      image: e.target.files[0],
+    });
+    console.log(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    fetch(`${URL}/cars`, METHOD)
+    let formData = new FormData();
+    // formData.append('key','value')
+    formData.append("model", car.model);
+    formData.append("manufacturer", car.manufacturer);
+    formData.append("description", car.description);
+    formData.append("doors", car.doors);
+    formData.append("bags", car.bags);
+    formData.append("seats", car.seats);
+    formData.append("dailyRate", car.dailyRate);
+    formData.append("image", car.image);
+
+    const URL = "https://api-presta-app.herokuapp.com";
+    const OPTIONS = {
+      method: "post",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${localStorage["appState"]}`,
+      },
+    };
+
+    fetch(`${URL}/cars`, OPTIONS)
       .then((res) => {
         if (res.status === 400) {
           setError({
@@ -52,12 +72,11 @@ const CarCreate = () => {
           });
         }
 
-        setIsLoading(false);
-
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        setIsLoading(false);
+        // console.log(data);
       });
   };
 
@@ -81,11 +100,64 @@ const CarCreate = () => {
               displayName="Model"
               handleChange={handleChange}
             />
+
+            <div className="row">
+              <div className="col-8">
+                <InputGroup
+                  name="manufacturer"
+                  type="text"
+                  displayName="Manufacturer"
+                  handleChange={handleChange}
+                />
+              </div>
+
+              <div className="col-4">
+                <InputGroup
+                  name="dailyRate"
+                  type="number"
+                  min="0"
+                  displayName="Daily Rate"
+                  handleChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-4">
+                <InputGroup
+                  name="doors"
+                  type="number"
+                  min="0"
+                  displayName="Doors"
+                  handleChange={handleChange}
+                />
+              </div>
+
+              <div className="col-4">
+                <InputGroup
+                  name="seats"
+                  type="number"
+                  min="0"
+                  displayName="Seats"
+                  handleChange={handleChange}
+                />
+              </div>
+
+              <div className="col-4">
+                <InputGroup
+                  name="bags"
+                  type="number"
+                  min="0"
+                  displayName="Bags"
+                  handleChange={handleChange}
+                />
+              </div>
+            </div>
+
             <InputGroup
-              name="manufacturer"
-              type="text"
-              displayName="Manufacturer"
-              handleChange={handleChange}
+              name="image"
+              type="file"
+              handleChange={handleChangeFile}
             />
 
             <div className="form-group">
@@ -97,34 +169,6 @@ const CarCreate = () => {
                 onChange={handleChange}
               />
             </div>
-
-            <InputGroup
-              name="size"
-              type="text"
-              displayName="Size"
-              handleChange={handleChange}
-            />
-            <InputGroup
-              name="doors"
-              type="number"
-              min="0"
-              displayName="Doors"
-              handleChange={handleChange}
-            />
-            <InputGroup
-              name="seats"
-              type="number"
-              min="0"
-              displayName="Seats"
-              handleChange={handleChange}
-            />
-            <InputGroup
-              name="airbags"
-              type="number"
-              min="0"
-              displayName="Bags"
-              handleChange={handleChange}
-            />
 
             <button
               className="btn btn-warning round-full border-0 mt-3"

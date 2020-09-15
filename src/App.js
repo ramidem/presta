@@ -14,6 +14,7 @@ import CarSingle from "./components/CarSingle";
 function App() {
   const [authUser, setAuthUser] = useState({
     isAuth: false,
+    isAdmin: false,
     _id: "",
     username: "",
     fullname: "",
@@ -41,6 +42,7 @@ function App() {
               username: data.username,
               fullname: data.fullname,
               email: data.email,
+              isAdmin: data.isAdmin,
             });
           }
         });
