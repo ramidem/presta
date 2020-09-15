@@ -43,7 +43,6 @@ const CarCreate = () => {
     setIsLoading(true);
 
     let formData = new FormData();
-    // formData.append('key','value')
     formData.append("model", car.model);
     formData.append("manufacturer", car.manufacturer);
     formData.append("description", car.description);
@@ -76,7 +75,6 @@ const CarCreate = () => {
       })
       .then((data) => {
         setIsLoading(false);
-        // console.log(data);
       });
   };
 
