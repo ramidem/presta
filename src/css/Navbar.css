@@ -23,6 +23,7 @@
 }
 
 .navbar__title {
+  margin-left: -15px;
   font-weight: 600;
   color: white;
 }

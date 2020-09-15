@@ -72,7 +72,7 @@ const Navbar = (props) => {
           <div className="col-6">
             <Link
               to="/"
-              className="navbar-brand d-flex flex-column justify-content-center p-3"
+              className="navbar-brand d-flex flex-column justify-content-center"
             >
               <span className="navbar__title">PRESTA</span>
               <span className="navbar__slogan m-0">car rental</span>
