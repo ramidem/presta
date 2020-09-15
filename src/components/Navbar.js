@@ -54,7 +54,7 @@ const Navbar = (props) => {
             {props.authUser.isAuth ? (
               <>
                 <a href="/">Reservations</a> / <a href="/">Account</a> /{" "}
-                <a href="/">Logout</a>
+                <a href="/">Logout</a> /<Link to="/add-car">Add Car</Link>
               </>
             ) : (
               <>
@@ -69,7 +69,7 @@ const Navbar = (props) => {
       <nav className="navbar__bar navbar navbar-light bg-light shadow-sm">
         <div className="navbar__faux_bg"></div>
         <div className="container">
-          <div className="col-6 navbar__bg">
+          <div className="col-6">
             <Link
               to="/"
               className="navbar-brand d-flex flex-column justify-content-center p-3"

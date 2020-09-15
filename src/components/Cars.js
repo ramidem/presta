@@ -14,25 +14,12 @@ const GridCard = () => {
             className="card-img-top rounded-0"
             alt="Grid Card"
           />
-          <div className="card-body">
-            <div className="d-flex justify-content-between align-items-center mb-2">
-              <div className="d-flex flex-column">
-                <span className="badge badge-pill badge-secondary mb-2">
-                  SUV
-                </span>
-                <h6>
-                  $25
-                  <span className="small"> /day</span>
-                </h6>
-              </div>
-              <img
-                src="http://via.placeholder.com/100"
-                alt="brand"
-                width="50px"
-                className=" round-full mb-3"
-              />
-            </div>
-            <h5 className="card-title mb-0">Car Name</h5>
+          <div className="card-body text-center">
+            <h5 className="card-title mb-2">Car Name</h5>
+            <h6>
+              $25
+              <span className="small"> /day</span>
+            </h6>
           </div>
         </div>
       </NavLink>

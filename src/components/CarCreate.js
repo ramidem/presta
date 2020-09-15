@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import InputGroup from "./partials/InputGroup";
 import AlertMessage from "./partials/AlertMessage";
-import { Redirect } from "react-router-dom";
+import InputGroup from "./partials/InputGroup";
 
-const Register = () => {
-  const [user, setUser] = useState({
-    username: "",
-    fullname: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+const CarCreate = () => {
+  const [car, setCar] = useState({
+    model: "",
+    manufacturer: "",
+    description: "",
+    size: "",
+    doors: 0,
+    airbags: 0,
+    seats: 0,
   });
 
   const [error, setError] = useState({
@@ -18,25 +19,20 @@ const Register = () => {
     message: "",
   });
 
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  if (isSuccess) {
-    return <Redirect to="/login" />;
-  }
 
   const URL = "https://api-presta-app.herokuapp.com";
   const METHOD = {
     method: "post",
-    body: JSON.stringify(user),
+    body: JSON.stringify(car),
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage["appState"]}`,
     },
   };
 
   const handleChange = (e) => {
-    setUser({
-      ...user,
+    setCar({
+      ...car,
       [e.target.name]: e.target.value,
     });
   };
@@ -46,38 +42,30 @@ const Register = () => {
 
     setIsLoading(true);
 
-    fetch(`${URL}/users/register`, METHOD)
+    fetch(`${URL}/cars`, METHOD)
       .then((res) => {
         if (res.status === 400) {
           setError({
             hasError: true,
             color: "danger",
-            message: "Please check you credentials",
+            message: "All fields required",
           });
-        } else {
-          setIsSuccess(true);
         }
+
+        setIsLoading(false);
 
         return res.json();
       })
       .then((data) => {
-        // @TODO do something about the returned errors
-        // if (data.error) {
-        //   setError({
-        //     hasError: true,
-        //     color: "danger",
-        //     message: "All fields required",
-        //   });
-        // }
-        setIsLoading(false);
+        console.log(data);
       });
   };
 
   return (
     <div className="container">
       <div className="row mt-5">
-        <div className="col-8 col-md-6 col-lg-4 mx-auto bg-white shadow p-4">
-          <h4 className="text-center">Register</h4>
+        <div className="col-12 col-md-8 col-lg-6 mx-auto bg-white shadow p-5">
+          <h4 className="text-center">Create Car</h4>
           <hr />
 
           {error.hasError ? (
@@ -88,33 +76,53 @@ const Register = () => {
 
           <form onSubmit={handleSubmit}>
             <InputGroup
-              name="username"
+              name="model"
               type="text"
-              displayName="Username"
+              displayName="Model"
               handleChange={handleChange}
             />
             <InputGroup
-              name="fullname"
+              name="manufacturer"
               type="text"
-              displayName="Fullname"
+              displayName="Manufacturer"
+              handleChange={handleChange}
+            />
+
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <textarea
+                name="description"
+                id="description"
+                className="form-control rounded-0"
+                onChange={handleChange}
+              />
+            </div>
+
+            <InputGroup
+              name="size"
+              type="text"
+              displayName="Size"
               handleChange={handleChange}
             />
             <InputGroup
-              name="email"
-              type="email"
-              displayName="Email"
+              name="doors"
+              type="number"
+              min="0"
+              displayName="Doors"
               handleChange={handleChange}
             />
             <InputGroup
-              name="password"
-              type="password"
-              displayName="Password"
+              name="seats"
+              type="number"
+              min="0"
+              displayName="Seats"
               handleChange={handleChange}
             />
             <InputGroup
-              name="confirmPassword"
-              type="password"
-              displayName="Confirm Password"
+              name="airbags"
+              type="number"
+              min="0"
+              displayName="Bags"
               handleChange={handleChange}
             />
 
@@ -128,10 +136,10 @@ const Register = () => {
                     className="spinner-border spinner-border-sm text-light"
                     role="status"
                   ></div>
-                  &nbsp; Register
+                  &nbsp; Create Car
                 </>
               ) : (
-                "Register"
+                "Create Car"
               )}
             </button>
           </form>
@@ -141,4 +149,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default CarCreate;

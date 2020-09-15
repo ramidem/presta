@@ -5,27 +5,21 @@
 
 .navbar__faux_bg {
   position: absolute;
-  width: 50%;
+  width: 55%;
   height: 100%;
   background-color: #1b1b1b;
   transform: skew(30deg);
-  margin-left: -35px;
+  margin-left: -45px;
 }
 
 .navbar__bg {
-  width: 250px;
   margin-top: -10px;
   margin-bottom: -10px;
-  transform: skew(30deg);
 }
 
 .navbar-brand {
   line-height: 1;
   background-color: #1b1b1b;
-}
-
-.navbar a span {
-  transform: skew(-30deg);
 }
 
 .navbar__title {

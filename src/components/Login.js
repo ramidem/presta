@@ -23,7 +23,7 @@ const Login = (props) => {
   }
 
   const URL = "https://api-presta-app.herokuapp.com";
-  const METHOD = {
+  const OPTIONS = {
     method: "post",
     body: JSON.stringify(credentials),
     headers: {
@@ -43,28 +43,22 @@ const Login = (props) => {
 
     setIsLoading(true);
 
-    fetch(`${URL}/users/login`, METHOD)
+    fetch(`${URL}/users/login`, OPTIONS)
       .then((res) => {
-        if (res.status === 404) {
+        if (res.status !== 200) {
           setError({
             hasError: true,
             color: "danger",
-            message: "Username does not exist",
-          });
-        } else if (res.status === 400) {
-          setError({
-            hasError: true,
-            color: "danger",
-            message: "Please check your credentials",
+            message: "Check your credentials",
           });
         }
 
         return res.json();
       })
       .then((data) => {
-        console.log("this data: ", data);
         if (data.token) {
           localStorage["appState"] = data.token;
+
           props.setAuthUser({
             isAuth: true,
             _id: data.user._id,
@@ -73,6 +67,7 @@ const Login = (props) => {
             email: data.user.email,
             isAdmin: data.user.isAdmin,
           });
+
           setIsSuccess(true);
         } else {
           setIsLoading(false);
@@ -83,7 +78,7 @@ const Login = (props) => {
   return (
     <div className="container">
       <div className="row mt-5">
-        <div className="col-12 col-md-8 col-lg-6 mx-auto bg-white shadow p-5">
+        <div className="col-8 col-md-6 col-lg-4 mx-auto bg-white shadow p-4">
           <h4 className="text-center">Login</h4>
           <hr />
 

@@ -6,6 +6,7 @@ const Logout = (props) => {
 
   useEffect(() => {
     localStorage.removeItem("appState");
+
     props.setAuthUser({
       isAuth: false,
       _id: "",
@@ -15,7 +16,7 @@ const Logout = (props) => {
     });
 
     setIsSuccess(true);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isSuccess) {
     return <Redirect to="/" />;

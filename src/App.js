@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 
 import "./css/App.css";
+import CarCreate from "./components/CarCreate";
+import CarSingle from "./components/CarSingle";
 
 function App() {
   const [authUser, setAuthUser] = useState({
@@ -63,6 +65,14 @@ function App() {
 
         <Route path="/logout">
           <Logout setAuthUser={setAuthUser} />
+        </Route>
+
+        <Route path="/car">
+          <CarSingle />
+        </Route>
+
+        <Route path="/add-car">
+          <CarCreate />
         </Route>
       </Switch>
     </Router>
