@@ -32,7 +32,7 @@ const Cars = () => {
                   : "https://dummyimage.com/600x400/474747/d3af37&text=P"
               }
               className="card-img-top rounded-0"
-              alt="Grid Card"
+              alt={car.model}
             />
             <div className="card-body text-center">
               <h5 className="card-title mb-2">{car.model}</h5>

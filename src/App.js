@@ -69,8 +69,8 @@ function App() {
           <Logout setAuthUser={setAuthUser} />
         </Route>
 
-        <Route path="/car">
-          <CarSingle />
+        <Route path="/car/:id">
+          <CarSingle authUser={authUser} />
         </Route>
 
         <Route path="/add-car">
