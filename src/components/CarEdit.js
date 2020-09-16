@@ -37,6 +37,7 @@ const CarEdit = (props) => {
       .then((data) => {
         setCar(data);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = (e) => {

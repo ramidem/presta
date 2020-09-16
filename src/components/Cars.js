@@ -20,7 +20,6 @@ const Cars = () => {
   }, []);
 
   let carsGrid = cars.map((car) => {
-    console.log(car.image);
     return (
       <div className="col mb-4" key={car._id}>
         <Link to={`/car/${car._id}`}>

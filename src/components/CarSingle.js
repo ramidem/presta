@@ -53,6 +53,7 @@ const CarSingle = (props) => {
       .then((data) => {
         setCar(data);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -216,7 +217,7 @@ const CarSingle = (props) => {
           // className="modal fade"
           className={isRedirect ? "" : "modal fade"}
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >

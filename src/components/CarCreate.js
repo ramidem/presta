@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AlertMessage from "./partials/AlertMessage";
 import InputGroup from "./partials/InputGroup";
+import { Redirect } from "react-router-dom";
 
 const CarCreate = () => {
   const [car, setCar] = useState({
@@ -21,6 +22,10 @@ const CarCreate = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirect, setIsRedirect] = useState({
+    newId: "",
+    success: false,
+  });
 
   const handleChange = (e) => {
     setCar({
@@ -36,6 +41,10 @@ const CarCreate = () => {
     });
   };
 
+  if (isRedirect.success) {
+    return <Redirect to={`/car/${isRedirect.newId}`} />;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -49,9 +58,8 @@ const CarCreate = () => {
     formData.append("bags", car.bags);
     formData.append("seats", car.seats);
     formData.append("dailyRate", car.dailyRate);
-    if (car.image) {
-      formData.append("image", car.image);
-    }
+
+    formData.append("image", car.image);
 
     const URL = "https://api-presta-app.herokuapp.com";
     const OPTIONS = {
@@ -75,6 +83,13 @@ const CarCreate = () => {
         return res.json();
       })
       .then((data) => {
+        if (data._id) {
+          setIsRedirect({
+            ...isRedirect,
+            newId: data._id,
+            success: true,
+          });
+        }
         setIsLoading(false);
       });
   };
