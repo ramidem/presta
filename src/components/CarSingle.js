@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -57,8 +57,6 @@ const CarSingle = (props) => {
       setTotal(car.dailyRate * duration);
     }
   });
-
-  console.log(reservation);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -118,7 +116,12 @@ const CarSingle = (props) => {
         <div className="col-12 col-md-4 bg-white shadow-sm pt-3">
           <div className="row">
             <div className="col-6 text-center">
-              <button className="btn btn-sm btn-block btn-info">Update</button>
+              <Link
+                to={`/car/${id}/edit-car`}
+                className="btn btn-sm btn-block btn-info"
+              >
+                Update
+              </Link>
             </div>
             <div className="col-6 text-center">
               <button className="btn btn-sm btn-block btn-danger">

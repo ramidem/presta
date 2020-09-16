@@ -1,26 +1,19 @@
-import React, { useState } from "react";
-import AlertMessage from "./partials/AlertMessage";
+import React, { useState, useEffect } from "react";
 import InputGroup from "./partials/InputGroup";
+import AlertMessage from "./partials/AlertMessage";
+import { useParams, Link } from "react-router-dom";
 
-const CarCreate = () => {
-  const [car, setCar] = useState({
-    model: "",
-    manufacturer: "",
-    description: "",
-    image: "",
-    doors: 0,
-    bags: 0,
-    seats: 0,
-    dailyRate: 0,
-  });
+const CarEdit = (props) => {
+  let { id } = useParams();
 
+  const [car, setCar] = useState({});
+
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     hasError: false,
     color: "",
     message: "",
   });
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setCar({
@@ -35,6 +28,16 @@ const CarCreate = () => {
       image: e.target.files[0],
     });
   };
+
+  const URL = "https://api-presta-app.herokuapp.com";
+
+  useEffect(() => {
+    fetch(`${URL}/cars/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCar(data);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,30 +55,23 @@ const CarCreate = () => {
     if (car.image) {
       formData.append("image", car.image);
     }
-
-    const URL = "https://api-presta-app.herokuapp.com";
     const OPTIONS = {
-      method: "post",
+      method: "put",
       body: formData,
       headers: {
         Authorization: `Bearer ${localStorage["appState"]}`,
       },
     };
 
-    fetch(`${URL}/cars`, OPTIONS)
-      .then((res) => {
-        if (res.status === 400) {
-          setError({
-            hasError: true,
-            color: "danger",
-            message: "All fields required",
-          });
-        }
-
-        return res.json();
-      })
+    fetch(`${URL}/cars/${id}`, OPTIONS)
+      .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);
+        setError({
+          hasError: true,
+          color: "success",
+          message: "Updated successful",
+        });
       });
   };
 
@@ -83,7 +79,7 @@ const CarCreate = () => {
     <div className="container">
       <div className="row mt-5">
         <div className="col-12 col-md-8 col-lg-6 mx-auto bg-white shadow p-5">
-          <h4 className="text-center">Create Car</h4>
+          <h4 className="text-center">Update Car</h4>
           <hr />
 
           {error.hasError ? (
@@ -97,6 +93,7 @@ const CarCreate = () => {
               name="model"
               type="text"
               displayName="Model"
+              value={car.model}
               handleChange={handleChange}
             />
 
@@ -106,6 +103,7 @@ const CarCreate = () => {
                   name="manufacturer"
                   type="text"
                   displayName="Manufacturer"
+                  value={car.manufacturer}
                   handleChange={handleChange}
                 />
               </div>
@@ -116,6 +114,7 @@ const CarCreate = () => {
                   type="number"
                   min="0"
                   displayName="Daily Rate"
+                  value={car.dailyRate}
                   handleChange={handleChange}
                 />
               </div>
@@ -128,6 +127,7 @@ const CarCreate = () => {
                   type="number"
                   min="0"
                   displayName="Doors"
+                  value={car.doors}
                   handleChange={handleChange}
                 />
               </div>
@@ -138,6 +138,7 @@ const CarCreate = () => {
                   type="number"
                   min="0"
                   displayName="Seats"
+                  value={car.seats}
                   handleChange={handleChange}
                 />
               </div>
@@ -148,6 +149,7 @@ const CarCreate = () => {
                   type="number"
                   min="0"
                   displayName="Bags"
+                  value={car.bags}
                   handleChange={handleChange}
                 />
               </div>
@@ -166,7 +168,8 @@ const CarCreate = () => {
                 id="description"
                 className="form-control rounded-0"
                 onChange={handleChange}
-              />
+                value={car.description}
+              ></textarea>
             </div>
 
             <div className="row d-flex justify-content-between align-items-end px-2">
@@ -180,12 +183,15 @@ const CarCreate = () => {
                       className="spinner-border spinner-border-sm text-light"
                       role="status"
                     ></div>
-                    &nbsp; Create Car
+                    &nbsp; Update Car
                   </>
                 ) : (
-                  "Create Car"
+                  "Update Car"
                 )}
               </button>
+              <Link to={`/car/${car._id}`} className="small text-uppercase">
+                View
+              </Link>
             </div>
           </form>
         </div>
@@ -194,4 +200,4 @@ const CarCreate = () => {
   );
 };
 
-export default CarCreate;
+export default CarEdit;

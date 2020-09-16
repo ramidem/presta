@@ -10,6 +10,7 @@ import Logout from "./components/Logout";
 import "./css/App.css";
 import CarCreate from "./components/CarCreate";
 import CarSingle from "./components/CarSingle";
+import CarEdit from "./components/CarEdit";
 
 function App() {
   const [authUser, setAuthUser] = useState({
@@ -69,12 +70,16 @@ function App() {
           <Logout setAuthUser={setAuthUser} />
         </Route>
 
-        <Route path="/car/:id">
+        <Route exact path="/car/:id">
           <CarSingle authUser={authUser} />
         </Route>
 
         <Route path="/add-car">
-          <CarCreate />
+          <CarCreate authUser={authUser} />
+        </Route>
+
+        <Route path="/car/:id/edit-car">
+          <CarEdit authUser={authUser} />
         </Route>
       </Switch>
     </Router>
