@@ -40,3 +40,7 @@ a:hover {
   background-color: #b8860b;
   border: none;
 }
+
+.modal-backdrop {
+  display: none;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
@@ -13,6 +13,9 @@ const CarSingle = (props) => {
     carId: "",
     customerId: "",
   });
+
+  const [isRedirect, setIsRedirect] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [duration, setDuration] = useState(null);
   const [total, setTotal] = useState(null);
@@ -42,10 +45,10 @@ const CarSingle = (props) => {
     });
   };
 
-  const URL = "https://api-presta-app.herokuapp.com/cars/" + id;
+  const URL = "https://api-presta-app.herokuapp.com";
 
   useEffect(() => {
-    fetch(`${URL}`)
+    fetch(`${URL}/cars/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCar(data);
@@ -57,6 +60,26 @@ const CarSingle = (props) => {
       setTotal(car.dailyRate * duration);
     }
   });
+
+  const handleDelete = (e) => {
+    setIsLoading(true);
+
+    fetch(`${URL}/cars/${id}`, {
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${localStorage["appState"]}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setIsLoading(false);
+        setIsRedirect(true);
+      });
+  };
+
+  if (isRedirect) {
+    return <Redirect to="/" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -118,13 +141,18 @@ const CarSingle = (props) => {
             <div className="col-6 text-center">
               <Link
                 to={`/car/${id}/edit-car`}
-                className="btn btn-sm btn-block btn-info"
+                className="btn btn-sm btn-block btn-info round-full"
               >
                 Update
               </Link>
             </div>
             <div className="col-6 text-center">
-              <button className="btn btn-sm btn-block btn-danger">
+              <button
+                type="button"
+                className="btn btn-sm btn-block btn-danger round-full"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
                 Delete
               </button>
             </div>
@@ -173,8 +201,51 @@ const CarSingle = (props) => {
                   </tr>
                 </tbody>
               </table>
-              <button className="btn btn-warning">Confirm</button>
+              {total && endDate ? (
+                <button className="btn btn-warning">Confirm</button>
+              ) : (
+                <button className="btn btn-warning" disabled>
+                  Confirm
+                </button>
+              )}
             </form>
+          </div>
+        </div>
+        {/* MODAL */}
+        <div
+          // className="modal fade"
+          className={isRedirect ? "" : "modal fade"}
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog rounded-0 border-0">
+            <div className="modal-content">
+              <div className="modal-body my-3">
+                Are you sure you want to delete this item?
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger round-full"
+                  onClick={handleDelete}
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <div
+                        className="spinner-border spinner-border-sm text-light"
+                        role="status"
+                      ></div>
+                      &nbsp; Yes, delete
+                    </>
+                  ) : (
+                    "Yes, delete"
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
