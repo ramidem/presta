@@ -61,14 +61,6 @@ const Register = () => {
         return res.json();
       })
       .then((data) => {
-        // @TODO do something about the returned errors
-        // if (data.error) {
-        //   setError({
-        //     hasError: true,
-        //     color: "danger",
-        //     message: "All fields required",
-        //   });
-        // }
         setIsLoading(false);
       });
   };

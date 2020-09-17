@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import "./../css/Navbar.css";
+import { AppContext } from "../AppProvider";
 
 const Modal = () => {
   return (
@@ -45,16 +46,25 @@ const Modal = () => {
   );
 };
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const [authUser] = useContext(AppContext);
   return (
     <>
       <div className="navbar navbar-dark bg-dark p-0">
         <div className="container">
           <span className="navbar__links navbar-text ml-auto pr-3 text-uppercase">
-            {props.authUser.isAuth ? (
+            {authUser.isAdmin ? (
+              <>
+                <Link to="/add-car">Add Car</Link>
+                <span> / </span>
+              </>
+            ) : (
+              ""
+            )}
+            {authUser.isAuth ? (
               <>
                 <Link to="/reservations">Reservations</Link> /{" "}
-                <Link to="/add-car">Add Car</Link> / <a href="/">Logout</a>
+                <a href="/">Logout</a>
               </>
             ) : (
               <>
@@ -88,7 +98,7 @@ const Navbar = (props) => {
           {/* </button> */}
         </div>
       </nav>
-      <Modal authUser={props.authUser} />
+      <Modal />
     </>
   );
 };

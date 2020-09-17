@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import InputGroup from "./partials/InputGroup";
 import { Redirect } from "react-router-dom";
 import AlertMessage from "./partials/AlertMessage";
+import { AppContext } from "../AppProvider";
 
 const Login = (props) => {
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: "",
-  });
+  const [authUser, setAuthUser] = useContext(AppContext);
 
   const [error, setError] = useState({
     hasError: false,
@@ -25,15 +23,15 @@ const Login = (props) => {
   const URL = "https://api-presta-app.herokuapp.com";
   const OPTIONS = {
     method: "post",
-    body: JSON.stringify(credentials),
+    body: JSON.stringify(authUser),
     headers: {
       "Content-Type": "application/json",
     },
   };
 
   const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
+    setAuthUser({
+      ...authUser,
       [e.target.name]: e.target.value,
     });
   };
@@ -59,7 +57,7 @@ const Login = (props) => {
         if (data.token) {
           localStorage["appState"] = data.token;
 
-          props.setAuthUser({
+          setAuthUser({
             isAuth: true,
             _id: data.user._id,
             username: data.user.username,

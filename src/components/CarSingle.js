@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../AppProvider";
 import { useParams, Link, Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 
 const CarSingle = (props) => {
+  const [authUser] = useContext(AppContext);
+
   let { id } = useParams();
   const [car, setCar] = useState({});
   const [reservation, setReservation] = useState({
@@ -40,7 +43,7 @@ const CarSingle = (props) => {
       ...reservation,
       startDate: start,
       endDate: end,
-      customerId: props.authUser._id,
+      customerId: authUser._id,
       carId: id,
     });
   };
@@ -145,26 +148,30 @@ const CarSingle = (props) => {
           </div>
         </div>
         <div className="col-12 col-md-4 bg-white shadow-sm">
-          <div className="row">
-            <div className="col-6 text-center">
-              <Link
-                to={`/car/${id}/edit-car`}
-                className="btn btn-sm btn-block btn-info round-full"
-              >
-                Update
-              </Link>
+          {authUser.isAdmin ? (
+            <div className="row">
+              <div className="col-6 text-center">
+                <Link
+                  to={`/car/${id}/edit-car`}
+                  className="btn btn-sm btn-block btn-info round-full"
+                >
+                  Update
+                </Link>
+              </div>
+              <div className="col-6 text-center">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-block btn-danger round-full"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="col-6 text-center">
-              <button
-                type="button"
-                className="btn btn-sm btn-block btn-danger round-full"
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
+          ) : (
+            ""
+          )}
           <div className="row mt-5 ">
             <form onSubmit={handleSubmit}>
               <div className="d-flex flex-column align-items-center justify-content-center">
@@ -210,19 +217,25 @@ const CarSingle = (props) => {
                 </tbody>
               </table>
               {total && endDate ? (
-                <button className="btn btn-warning" disabled={isLoading}>
-                  {isLoading ? (
-                    <>
-                      <div
-                        className="spinner-border spinner-border-sm text-light"
-                        role="status"
-                      ></div>
-                      &nbsp; Confirm
-                    </>
-                  ) : (
-                    "Confirm"
-                  )}
-                </button>
+                authUser.isAuth ? (
+                  <button className="btn btn-warning" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <div
+                          className="spinner-border spinner-border-sm text-light"
+                          role="status"
+                        ></div>
+                        &nbsp; Confirm
+                      </>
+                    ) : (
+                      "Confirm"
+                    )}
+                  </button>
+                ) : (
+                  <Link to="/login" className="btn btn-warning">
+                    Confirm
+                  </Link>
+                )
               ) : (
                 <button className="btn btn-warning" disabled>
                   Confirm
