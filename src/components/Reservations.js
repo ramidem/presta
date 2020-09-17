@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { AppContext } from "../AppProvider";
 
 const Check = () => {
   return (
@@ -26,6 +27,7 @@ const Check = () => {
 };
 
 const Reservations = () => {
+  const [authUser] = useContext(AppContext);
   const [reservations, setReservations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,6 +47,10 @@ const Reservations = () => {
         setIsLoading(false);
       });
   }, []);
+
+  if (!authUser.isAuth) {
+    return <Redirect to="/not-allowed" />;
+  }
 
   let collapsibleList = reservations.map((reservation) => {
     let created = moment(reservation.createdAt).format("MMM DD, YYYY");
@@ -150,7 +156,7 @@ const Reservations = () => {
                   <div className="spinner-border" role="status"></div>
                 </div>
               </div>
-            ) : collapsibleList > 0 ? (
+            ) : collapsibleList.length > 0 ? (
               collapsibleList
             ) : (
               <Check />

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AlertMessage from "./partials/AlertMessage";
 import InputGroup from "./partials/InputGroup";
 import { Redirect } from "react-router-dom";
+import { AppContext } from "../AppProvider";
 
 const CarCreate = () => {
+  const [authUser] = useContext(AppContext);
   const [car, setCar] = useState({
     model: "",
     manufacturer: "",
@@ -93,6 +95,10 @@ const CarCreate = () => {
         setIsLoading(false);
       });
   };
+
+  if (!authUser.isAuth) {
+    return <Redirect to="/not-allowed" />;
+  }
 
   return (
     <div className="container">

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, Redirect } from "react-router-dom";
 import moment from "moment";
+import { AppContext } from "../AppProvider";
 
 const ReservationSingle = (props) => {
   let { id } = useParams();
+
+  const [authUser] = useContext(AppContext);
 
   const [reservation, setReservation] = useState({});
   const [customer, setCustomer] = useState({});
@@ -25,6 +28,10 @@ const ReservationSingle = (props) => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!authUser.isAuth) {
+    return <Redirect to="/not-allowed" />;
+  }
 
   let created = moment(reservation.createdAt).format("MMM DD, YYYY");
   let from = moment(reservation.startDate).format("MMM DD, YYYY");

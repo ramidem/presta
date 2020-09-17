@@ -16,6 +16,7 @@ import CarEdit from "./components/CarEdit";
 import Reservations from "./components/Reservations";
 import ReservationSingle from "./components/ReservationSingle";
 import "./css/App.css";
+import Error403 from "./Error403";
 
 function App() {
   return (
@@ -58,6 +59,10 @@ function App() {
           <PrivateRoute exact path="/reservation/:id">
             <ReservationSingle />
           </PrivateRoute>
+
+          <Route path="/not-allowed">
+            <Error403 />
+          </Route>
 
           <Route path="*">
             <Error404 />

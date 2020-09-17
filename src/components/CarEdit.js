@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InputGroup from "./partials/InputGroup";
 import AlertMessage from "./partials/AlertMessage";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Redirect } from "react-router-dom";
+import { AppContext } from "../AppProvider";
 
 const CarEdit = () => {
   let { id } = useParams();
 
+  const [authUser] = useContext(AppContext);
   const [car, setCar] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
@@ -76,6 +78,10 @@ const CarEdit = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
       });
   };
+
+  if (!authUser.isAuth) {
+    return <Redirect to="/not-allowed" />;
+  }
 
   return (
     <div className="container">
