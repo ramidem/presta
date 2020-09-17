@@ -31,14 +31,14 @@ const Reservations = () => {
     let { model } = reservation.carId;
 
     return (
-      <div class="card border-0">
+      <div className="card border-0" key={reservation._id}>
         <div
-          class="card-header d-flex justify-content-between align-items-center"
+          className="card-header d-flex justify-content-between align-items-center"
           id={`headingOne${reservation._id}`}
         >
-          <h2 class="mb-0">
+          <h2 className="mb-0">
             <button
-              class="btn btn-link text-left text-dark"
+              className="btn btn-link text-left text-dark"
               type="button"
               data-toggle="collapse"
               data-target={`#collapseOne${reservation._id}`}
@@ -55,11 +55,11 @@ const Reservations = () => {
 
         <div
           id={`collapseOne${reservation._id}`}
-          class="collapse"
+          className="collapse"
           aria-labelledby={`headingOne${reservation._id}`}
           data-parent="#accordionExample"
         >
-          <div class="card-body">
+          <div className="card-body">
             <table className="table">
               <tbody>
                 <tr>
@@ -120,7 +120,7 @@ const Reservations = () => {
           <hr />
 
           {/* accordion */}
-          <div class="accordion" id="accordionExample">
+          <div className="accordion" id="accordionExample">
             {isLoading ? (
               <div className="row d-flex justify-content-center">
                 <div className="text-center">

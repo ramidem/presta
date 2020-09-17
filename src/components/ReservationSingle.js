@@ -92,28 +92,23 @@ const ReservationSingle = (props) => {
 
           <div className="row">
             <div className="col">
-              <div class="card mb-3 border-0 rounded-0">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
+              <div className="card mb-3 border-0 rounded-0">
+                <div className="row no-gutters">
+                  <div className="col-md-4">
                     <img
                       src={
                         car.image
                           ? `${URL}/${car.image}`
                           : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
                       }
-                      class="card-img"
+                      className="card-img"
                       alt={car.model}
                     />
                   </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{car.model}</h5>
-                      <p class="card-text">{car.description}</p>
-                      <p class="card-text">
-                        <small class="text-muted">
-                          Last updated 3 mins ago
-                        </small>
-                      </p>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h5 className="card-title">{car.model}</h5>
+                      <p className="card-text">{car.description}</p>
                     </div>
                   </div>
                 </div>

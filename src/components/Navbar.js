@@ -79,16 +79,16 @@ const Navbar = (props) => {
             </Link>
           </div>
 
-          <button
-            className="btn btn-warning round-full border-0 mr-3"
-            data-target="#bookNow"
-            data-toggle="modal"
-          >
-            Book Now
-          </button>
+          {/* <button */}
+          {/*   className="btn btn-warning round-full border-0 mr-3" */}
+          {/*   data-target="#bookNow" */}
+          {/*   data-toggle="modal" */}
+          {/* > */}
+          {/*   Book Now */}
+          {/* </button> */}
         </div>
       </nav>
-      <Modal />
+      <Modal authUser={props.authUser} />
     </>
   );
 };

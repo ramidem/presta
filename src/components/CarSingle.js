@@ -84,6 +84,7 @@ const CarSingle = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     fetch("https://api-presta-app.herokuapp.com/reservations", {
       method: "post",
@@ -94,7 +95,10 @@ const CarSingle = (props) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => data);
+      .then((data) => {
+        console.log(data);
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -112,15 +116,17 @@ const CarSingle = (props) => {
           </div>
           <hr />
           <div className="row">
-            <img
-              src={
-                car.image
-                  ? `${URL}/${car.image}`
-                  : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
-              }
-              alt={car.model}
-              className="img-fluid"
-            />
+            <div className="card m-2">
+              <img
+                src={
+                  car.image
+                    ? `${URL}/${car.image}`
+                    : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
+                }
+                alt={car.model}
+                className="img-fluid"
+              />
+            </div>
           </div>
           <div className="row my-5">
             <div className="col-12 col-md-8">
@@ -138,7 +144,7 @@ const CarSingle = (props) => {
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-4 bg-white shadow-sm pt-3">
+        <div className="col-12 col-md-4 bg-white shadow-sm">
           <div className="row">
             <div className="col-6 text-center">
               <Link
@@ -204,7 +210,19 @@ const CarSingle = (props) => {
                 </tbody>
               </table>
               {total && endDate ? (
-                <button className="btn btn-warning">Confirm</button>
+                <button className="btn btn-warning" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <div
+                        className="spinner-border spinner-border-sm text-light"
+                        role="status"
+                      ></div>
+                      &nbsp; Confirm
+                    </>
+                  ) : (
+                    "Confirm"
+                  )}
+                </button>
               ) : (
                 <button className="btn btn-warning" disabled>
                   Confirm
