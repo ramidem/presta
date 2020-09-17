@@ -12,7 +12,45 @@ const ReservationSingle = (props) => {
   const [customer, setCustomer] = useState({});
   const [car, setCar] = useState({});
 
+  const [status, setStatus] = useState({
+    status: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
   const URL = "https://api-presta-app.herokuapp.com";
+
+  const handleStatusChange = (e) => {
+    setStatus({
+      ...status,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleStatusUpdate = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    fetch(`${URL}/reservations/${id}`, {
+      method: "put",
+      body: JSON.stringify(status),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage["appState"]}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setReservation({
+          ...reservation,
+          status: data.status,
+        });
+        setIsLoading(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      });
+  };
 
   useEffect(() => {
     fetch(`${URL}/reservations/${id}`, {
@@ -25,6 +63,7 @@ const ReservationSingle = (props) => {
         setReservation(data);
         setCustomer(data.customerId);
         setCar(data.carId);
+        setStatus(data.status);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -94,6 +133,43 @@ const ReservationSingle = (props) => {
                 </th>
                 <td className="text-right">{reservation.status}</td>
               </tr>
+              {authUser.isAdmin ? (
+                <tr>
+                  <th scope="row" colSpan="2">
+                    <div className="row">
+                      <div className="col-6"></div>
+                      <div className="col-6">
+                        <form
+                          className="input-group"
+                          onSubmit={handleStatusUpdate}
+                        >
+                          <select
+                            id="inputState"
+                            class="form-control"
+                            name="status"
+                            onChange={handleStatusChange}
+                            disabled={isLoading}
+                          >
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Returned">Returned</option>
+                          </select>
+                          <div className="input-group-append">
+                            <button
+                              className="btn btn-outline-primary"
+                              disabled={isLoading}
+                            >
+                              Update
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              ) : (
+                ""
+              )}
             </tbody>
           </table>
 
