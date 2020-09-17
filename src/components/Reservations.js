@@ -100,7 +100,10 @@ const Reservations = () => {
                 </tr>
               </tbody>
             </table>
-            <Link to="/reservation/id" className="btn btn-outline-dark">
+            <Link
+              to={`reservation/${reservation._id}`}
+              className="btn btn-outline-dark"
+            >
               View
             </Link>
           </div>

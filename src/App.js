@@ -12,6 +12,7 @@ import CarCreate from "./components/CarCreate";
 import CarSingle from "./components/CarSingle";
 import CarEdit from "./components/CarEdit";
 import Reservations from "./components/Reservations";
+import ReservationSingle from "./components/ReservationSingle";
 
 function App() {
   const [authUser, setAuthUser] = useState({
@@ -85,6 +86,10 @@ function App() {
 
         <Route path="/reservations">
           <Reservations />
+        </Route>
+
+        <Route exact path="/reservation/:id">
+          <ReservationSingle />
         </Route>
       </Switch>
     </Router>
