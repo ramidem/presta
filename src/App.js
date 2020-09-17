@@ -11,6 +11,7 @@ import "./css/App.css";
 import CarCreate from "./components/CarCreate";
 import CarSingle from "./components/CarSingle";
 import CarEdit from "./components/CarEdit";
+import Reservations from "./components/Reservations";
 
 function App() {
   const [authUser, setAuthUser] = useState({
@@ -80,6 +81,10 @@ function App() {
 
         <Route path="/car/:id/edit-car">
           <CarEdit authUser={authUser} />
+        </Route>
+
+        <Route path="/reservations">
+          <Reservations />
         </Route>
       </Switch>
     </Router>

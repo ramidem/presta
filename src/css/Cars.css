@@ -11,3 +11,7 @@
   display: inline-block;
   margin-right: 1em;
 }
+
+img {
+  object-fit: cover;
+}

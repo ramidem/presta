@@ -32,6 +32,7 @@ const Cars = () => {
               }
               className="card-img-top rounded-0"
               alt={car.model}
+              height="150px"
             />
             <div className="card-body text-center">
               <h5 className="card-title mb-2">{car.model}</h5>

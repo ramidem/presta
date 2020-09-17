@@ -94,7 +94,7 @@ const CarSingle = (props) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => data);
   };
 
   return (
@@ -119,6 +119,7 @@ const CarSingle = (props) => {
                   : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
               }
               alt={car.model}
+              className="img-fluid"
             />
           </div>
           <div className="row my-5">

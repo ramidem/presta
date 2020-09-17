@@ -53,8 +53,8 @@ const Navbar = (props) => {
           <span className="navbar__links navbar-text ml-auto pr-3 text-uppercase">
             {props.authUser.isAuth ? (
               <>
-                <a href="/">Reservations</a> / <a href="/">Account</a> /{" "}
-                <a href="/">Logout</a> /<Link to="/add-car">Add Car</Link>
+                <Link to="/reservations">Reservations</Link> /{" "}
+                <Link to="/add-car">Add Car</Link> / <a href="/">Logout</a>
               </>
             ) : (
               <>
