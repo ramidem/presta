@@ -5,10 +5,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 
-const CarSingle = (props) => {
+const CarSingle = () => {
+  let { id } = useParams();
+
   const [authUser] = useContext(AppContext);
 
-  let { id } = useParams();
   const [car, setCar] = useState({});
   const [reservation, setReservation] = useState({
     startDate: "",
@@ -149,10 +150,10 @@ const CarSingle = (props) => {
         </div>
         <div className="col-12 col-md-4 bg-white shadow-sm">
           {authUser.isAdmin ? (
-            <div className="row">
+            <div className="row mt-5">
               <div className="col-6 text-center">
                 <Link
-                  to={`/car/${id}/edit-car`}
+                  to={`/car/edit/${id}`}
                   className="btn btn-sm btn-block btn-info round-full"
                 >
                   Update
@@ -170,79 +171,82 @@ const CarSingle = (props) => {
               </div>
             </div>
           ) : (
-            ""
-          )}
-          <div className="row mt-5 ">
-            <form onSubmit={handleSubmit}>
-              <div className="d-flex flex-column align-items-center justify-content-center">
-                <DatePicker
-                  selected={startDate}
-                  onChange={onChange}
-                  startDate={startDate}
-                  endDate={endDate}
-                  selectsRange
-                  inline
-                />
-              </div>
-              <table className="table">
-                <tbody>
-                  <tr>
-                    <th scope="row" className="text-muted">
-                      From
-                    </th>
-                    <td className="text-right">{from ? from : "00/00/0000"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="text-muted">
-                      Until
-                    </th>
-                    <td className="text-right">
-                      {until !== "Invalid date" ? until : "00/00/0000"}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="text-muted">
-                      Days
-                    </th>
-                    <td className="text-right">{duration ? duration : "0"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row" className="text-muted">
-                      Total
-                    </th>
-                    <td className="text-right">
-                      {total ? `$ ${total}` : "$ 0"}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              {total && endDate ? (
-                authUser.isAuth ? (
-                  <button className="btn btn-warning" disabled={isLoading}>
-                    {isLoading ? (
-                      <>
-                        <div
-                          className="spinner-border spinner-border-sm text-light"
-                          role="status"
-                        ></div>
-                        &nbsp; Confirm
-                      </>
-                    ) : (
-                      "Confirm"
-                    )}
-                  </button>
+            <div className="row mt-5 ">
+              <form onSubmit={handleSubmit}>
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={onChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    selectsRange
+                    inline
+                  />
+                </div>
+                <table className="table">
+                  <tbody>
+                    <tr>
+                      <th scope="row" className="text-muted">
+                        From
+                      </th>
+                      <td className="text-right">
+                        {from ? from : "00/00/0000"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" className="text-muted">
+                        Until
+                      </th>
+                      <td className="text-right">
+                        {until !== "Invalid date" ? until : "00/00/0000"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" className="text-muted">
+                        Days
+                      </th>
+                      <td className="text-right">
+                        {duration ? duration : "0"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" className="text-muted">
+                        Total
+                      </th>
+                      <td className="text-right">
+                        {total ? `$ ${total}` : "$ 0"}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                {total && endDate ? (
+                  authUser.isAuth ? (
+                    <button className="btn btn-warning" disabled={isLoading}>
+                      {isLoading ? (
+                        <>
+                          <div
+                            className="spinner-border spinner-border-sm text-light"
+                            role="status"
+                          ></div>
+                          &nbsp; Confirm
+                        </>
+                      ) : (
+                        "Confirm"
+                      )}
+                    </button>
+                  ) : (
+                    <Link to="/login" className="btn btn-warning">
+                      Confirm
+                    </Link>
+                  )
                 ) : (
-                  <Link to="/login" className="btn btn-warning">
+                  <button className="btn btn-warning" disabled>
                     Confirm
-                  </Link>
-                )
-              ) : (
-                <button className="btn btn-warning" disabled>
-                  Confirm
-                </button>
-              )}
-            </form>
-          </div>
+                  </button>
+                )}
+              </form>
+            </div>
+          )}
         </div>
         {/* MODAL */}
         <div

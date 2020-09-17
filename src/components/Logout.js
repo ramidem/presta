@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import { AppContext } from "../AppProvider";
 
-const Logout = (props) => {
+const Logout = () => {
+  const [authUser, setAuthUser] = useContext(AppContext);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     localStorage.removeItem("appState");
 
-    props.setAuthUser({
+    setAuthUser({
+      ...authUser,
       isAuth: false,
       _id: "",
       username: "",

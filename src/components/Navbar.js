@@ -64,7 +64,7 @@ const Navbar = () => {
             {authUser.isAuth ? (
               <>
                 <Link to="/reservations">Reservations</Link> /{" "}
-                <a href="/">Logout</a>
+                <Link to="/logout">Logout</Link>
               </>
             ) : (
               <>

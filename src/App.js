@@ -47,7 +47,7 @@ function App() {
             <CarCreate />
           </PrivateRoute>
 
-          <PrivateRoute path="/car/:id/edit-car">
+          <PrivateRoute path="/car/edit/:id">
             <CarEdit />
           </PrivateRoute>
 

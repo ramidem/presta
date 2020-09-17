@@ -3,7 +3,7 @@ import InputGroup from "./partials/InputGroup";
 import AlertMessage from "./partials/AlertMessage";
 import { useParams, Link } from "react-router-dom";
 
-const CarEdit = (props) => {
+const CarEdit = () => {
   let { id } = useParams();
 
   const [car, setCar] = useState({});
@@ -73,6 +73,7 @@ const CarEdit = (props) => {
           color: "success",
           message: "Updated successful",
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       });
   };
 
