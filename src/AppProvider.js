@@ -10,19 +10,17 @@ export const AppProvider = (props) => {
     fullname: "",
     email: "",
   });
-
   useEffect(() => {
     let appState = localStorage["appState"];
 
     const URL = "https://api-presta-app.herokuapp.com";
-    const HEADERS = {
-      headers: {
-        Authorization: `Bearer ${appState}`,
-      },
-    };
 
     if (appState) {
-      fetch(`${URL}/users/`, HEADERS)
+      fetch(`${URL}/users/profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage["appState"]}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data._id) {
