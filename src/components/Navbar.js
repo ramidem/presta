@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className="navbar navbar-dark bg-dark p-0">
         <div className="container">
           <span className="navbar__links navbar-text ml-auto pr-3 text-uppercase">
-            {authUser.isAdmin ? (
+            {authUser.isAuth && authUser.isAdmin ? (
               <>
                 <Link to="/add-car">Add Car</Link>
                 <span> / </span>
