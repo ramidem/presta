@@ -70,16 +70,29 @@ const CarSingle = () => {
     }
   });
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    setCar({
+      ...car,
+      isActive: false,
+    });
+  };
+
   const handleDelete = () => {
     setIsLoading(true);
 
     fetch(`${URL}/cars/${id}`, {
-      method: "delete",
+      method: "put",
+      body: JSON.stringify(car),
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage["appState"]}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
       .then((data) => {
         setIsLoading(false);
         setIsRedirect(true);
@@ -174,11 +187,12 @@ const CarSingle = () => {
               <div className="col-6 text-center">
                 <button
                   type="button"
-                  className="btn btn-sm btn-block btn-danger round-full"
+                  className="btn btn-sm btn-block btn-primary round-full"
                   data-toggle="modal"
                   data-target="#exampleModal"
+                  onClick={handleClick}
                 >
-                  Delete
+                  Inactive
                 </button>
               </div>
             </div>
@@ -274,12 +288,12 @@ const CarSingle = () => {
           <div className="modal-dialog rounded-0 border-0">
             <div className="modal-content">
               <div className="modal-body my-3">
-                Are you sure you want to delete this item?
+                Set car from 'Active' to 'Inactive'?
               </div>
               <div className="modal-footer">
                 <button
                   type="button"
-                  className="btn btn-sm btn-danger round-full"
+                  className="btn btn-sm btn-primary round-full"
                   onClick={handleDelete}
                   disabled={isLoading}
                 >
@@ -289,10 +303,10 @@ const CarSingle = () => {
                         className="spinner-border spinner-border-sm text-light"
                         role="status"
                       ></div>
-                      &nbsp; Yes, delete
+                      &nbsp; Yes
                     </>
                   ) : (
-                    "Yes, delete"
+                    "Yes"
                   )}
                 </button>
               </div>

@@ -19,7 +19,9 @@ const Cars = () => {
       });
   }, []);
 
-  let carsGrid = cars.map((car) => {
+  let activeCars = cars.filter((car) => car.isActive === true);
+
+  let carsGrid = activeCars.map((car) => {
     return (
       <div className="col mb-4" key={car._id}>
         <Link to={`/car/${car._id}`}>
