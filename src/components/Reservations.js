@@ -30,6 +30,7 @@ const Reservations = () => {
   const [authUser] = useContext(AppContext);
   const [reservations, setReservations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRedirect, setIsRedirect] = useState(false);
 
   const URL = "https://api-presta-app.herokuapp.com";
 
@@ -47,8 +48,13 @@ const Reservations = () => {
         setIsLoading(false);
       });
   }, []);
+  useEffect(() => {
+    if (!authUser.isAuth) {
+      setIsLoading(true);
+    }
+  });
 
-  if (!authUser.isAuth) {
+  if (isRedirect) {
     return <Redirect to="/not-allowed" />;
   }
 
