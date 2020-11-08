@@ -41,18 +41,17 @@ const Reservations = () => {
       },
     })
       .then((res) => {
+        if (res.status === 401) {
+          setIsRedirect(true);
+        }
         return res.json();
       })
       .then((reservations) => {
         setReservations(reservations);
         setIsLoading(false);
+        setIsRedirect(false);
       });
   }, []);
-  useEffect(() => {
-    if (!authUser.isAuth) {
-      setIsLoading(true);
-    }
-  });
 
   if (isRedirect) {
     return <Redirect to="/not-allowed" />;
