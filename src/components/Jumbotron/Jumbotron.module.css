@@ -1,0 +1,24 @@
+.jumbotron {
+  background-image: url("https://res.cloudinary.com/dcqydvumi/image/upload/v1600067450/lambo_ach30z.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: rgba(211, 175, 55, 0.6);
+  padding: 50px 0 150px 0;
+}
+
+.jumbotron h1 {
+  color: whitesmoke;
+  text-shadow: var(--text-shadow);
+}
+
+.jumbotron p {
+  font-size: 14px;
+  color: whitesmoke;
+  font-weight: 400;
+  max-width: 50%;
+  padding: 10px 50px 10px 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-shadow: var(--text-shadow);
+  transform: skew(-15deg);
+  border-right: 5px solid #d3af37;
+}
