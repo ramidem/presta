@@ -15,7 +15,7 @@ const CarsGrid = ({ activeCars }) => {
                   <h5>{car.model}</h5>
                   <h6>
                     ${car.dailyRate}
-                    <span className="small"> /day</span>
+                    <span className="small"> /daily</span>
                   </h6>
                 </div>
               </Link>
