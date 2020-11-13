@@ -12,7 +12,7 @@ import Logout from "./components/Logout";
 import Error404 from "./Error404";
 
 import CarCreate from "./components/CarCreate";
-import CarSingle from "./components/CarSingle";
+import CarSingle from "./pages/CarSingle";
 import CarEdit from "./components/CarEdit";
 import Reservations from "./components/Reservations";
 import ReservationSingle from "./components/ReservationSingle";
