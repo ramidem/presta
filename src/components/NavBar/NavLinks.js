@@ -10,6 +10,8 @@ const Navlinks = ({ authUser }) => {
           <>
             <Link to="/add-car">Add Car</Link>
             <span> / </span>
+            <Link to="/all-cars">All Cars</Link>
+            <span> / </span>
           </>
         ) : (
           ""

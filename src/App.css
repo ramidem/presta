@@ -46,6 +46,10 @@ a:hover {
 ul {
   list-style: none;
 }
+hr {
+  margin-top: 10px;
+  border: 1px solid #eee;
+}
 
 .container {
   margin: auto;
@@ -54,12 +58,19 @@ ul {
   padding-right: 20px;
 }
 
+.content_wrapper {
+  margin-top: 50px;
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  background-color: white;
+}
+
 .btn {
   background-color: var(--primary-color);
   padding: 10px;
   border-radius: 4px;
   border: none;
-  display: block;
+  display: inline-block;
   outline: none;
   font-size: 12px;
   font-weight: bold;

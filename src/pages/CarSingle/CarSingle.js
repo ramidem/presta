@@ -24,7 +24,7 @@ const CarSingle = () => {
   return (
     <>
       <div className="container">
-        <div className="carsingle">
+        <div className="carsingle content_wrapper">
           <div className="carsingle_grid">
             <div className="carsingle_image">
               <img src={car.image} alt={car.model} />

@@ -18,6 +18,7 @@ import Reservations from "./components/Reservations";
 import ReservationSingle from "./components/ReservationSingle";
 import Error403 from "./Error403";
 import Footer from "./components/Footer/Footer";
+import AllCars from "./pages/AllCars/AllCars";
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
           <Route exact path="/car/:id">
             <CarSingle />
           </Route>
+
+          <PrivateRoute path="/all-cars">
+            <AllCars />
+          </PrivateRoute>
 
           <PrivateRoute path="/add-car">
             <CarCreate />

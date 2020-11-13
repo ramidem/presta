@@ -1,17 +1,5 @@
-.carsingle {
-  margin-top: 50px;
-  padding: 20px;
-  box-shadow: var(--box-shadow);
-  background-color: white;
-}
-
 .carsingle_description h2 {
   margin: 20px 0 5px 0;
-}
-
-.carsingle hr {
-  margin-top: 10px;
-  border: 1px solid #eee;
 }
 
 .carsingle_price_details {
