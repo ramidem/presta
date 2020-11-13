@@ -6,10 +6,8 @@ const Cars = () => {
   const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const URL = "https://api-presta-app.herokuapp.com";
-
   useEffect(() => {
-    fetch(`${URL}/cars`)
+    fetch("/api/cars")
       .then((res) => {
         return res.json();
       })
@@ -27,11 +25,7 @@ const Cars = () => {
         <Link to={`/car/${car._id}`}>
           <div className="card border-0 rounded-0">
             <img
-              src={
-                car.image
-                  ? `${URL}/${car.image}`
-                  : "https://dummyimage.com/600x400/474747/d3af37&text=P"
-              }
+              src={car.image}
               className="card-img-top rounded-0"
               alt={car.model}
               height="150px"

@@ -1,0 +1,41 @@
+.mainnav {
+    background-color: #1b1b1b;
+    padding: 15px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .mainnav_faux_bg {
+    position: absolute;
+    background-color: white;
+    width: 50%;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    transform: skew(30deg);
+    margin-right: -20px;
+  }
+  
+  .mainnav_brand {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .mainnav_brand_h1,
+  .mainnav_brand_p {
+    text-transform: uppercase;
+  }
+  
+  .mainnav_brand_h1 {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  
+  .mainnav_brand_p {
+    color: #d3af37;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  

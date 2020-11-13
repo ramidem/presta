@@ -17,8 +17,6 @@ const ReservationSingle = (props) => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const URL = "https://api-presta-app.herokuapp.com";
-
   const handleStatusChange = (e) => {
     setStatus({
       ...status,
@@ -31,7 +29,7 @@ const ReservationSingle = (props) => {
 
     setIsLoading(true);
 
-    fetch(`${URL}/reservations/${id}`, {
+    fetch(`/api/reservations/${id}`, {
       method: "put",
       body: JSON.stringify(status),
       headers: {
@@ -53,7 +51,7 @@ const ReservationSingle = (props) => {
   };
 
   useEffect(() => {
-    fetch(`${URL}/reservations/${id}`, {
+    fetch(`/api/reservations/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage["appState"]}`,
       },

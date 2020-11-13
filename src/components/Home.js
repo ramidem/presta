@@ -1,22 +1,29 @@
-import React from "react";
-import "./../css/Home.css";
-import Cars from "./Cars";
+import React, { useEffect, useState } from "react";
+import CarsGrid from "./CarsGrid/CarsGrid";
+import Jumbotron from "./Jumbotron/Jumbotron";
+import SlickShowcase from "./SlickShowcase/SlickShowcase";
 
-const Home = (props) => {
+const Home = () => {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/cars")
+      .then((res) => {
+        return res.json();
+      })
+      .then((cars) => {
+        setCars(cars);
+      });
+  }, []);
+
+  let featuredCars = cars.filter((car) => car.isFeatured === true);
+  let activeCars = cars.filter((car) => car.isActive === true);
+
   return (
     <>
-      <div className="jumbotron jumbotron-fluid">
-        <div className="container">
-          <div className="col-12 col-md-8 col-lg-8 mr-auto">
-            <h1 className="display-6 mb-0">Premium Cars</h1>
-            <p className="lead text-uppercase">Can't Afford it? Rent it</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <Cars />
-      </div>
+      <Jumbotron />
+      <SlickShowcase featuredCars={featuredCars} />
+      <CarsGrid activeCars={activeCars} />
     </>
   );
 };

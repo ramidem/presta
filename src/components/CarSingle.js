@@ -53,22 +53,19 @@ const CarSingle = () => {
     });
   };
 
-  const URL = "https://api-presta-app.herokuapp.com";
-
   useEffect(() => {
-    fetch(`${URL}/cars/${id}`)
+    fetch(`/api/cars/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCar(data);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (duration) {
       setTotal(car.dailyRate * duration);
     }
-  });
+  }, [car, duration]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -81,7 +78,7 @@ const CarSingle = () => {
   const handleDelete = () => {
     setIsLoading(true);
 
-    fetch(`${URL}/cars/${id}`, {
+    fetch(`/api/cars/${id}`, {
       method: "put",
       body: JSON.stringify(car),
       headers: {
@@ -111,7 +108,7 @@ const CarSingle = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    fetch("https://api-presta-app.herokuapp.com/reservations", {
+    fetch("/api/reservations", {
       method: "post",
       body: JSON.stringify(reservation),
       headers: {
@@ -146,15 +143,7 @@ const CarSingle = () => {
           <hr />
           <div className="row">
             <div className="card m-2">
-              <img
-                src={
-                  car.image
-                    ? `${URL}/${car.image}`
-                    : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
-                }
-                alt={car.model}
-                className="img-fluid"
-              />
+              <img src={car.image} alt={car.model} className="img-fluid" />
             </div>
           </div>
           <div className="row my-5">

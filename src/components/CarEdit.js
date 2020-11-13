@@ -31,10 +31,8 @@ const CarEdit = () => {
     });
   };
 
-  const URL = "https://api-presta-app.herokuapp.com";
-
   useEffect(() => {
-    fetch(`${URL}/cars/${id}`)
+    fetch(`/api/cars/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCar(data);
@@ -66,7 +64,7 @@ const CarEdit = () => {
       },
     };
 
-    fetch(`${URL}/cars/${id}`, OPTIONS)
+    fetch(`/api/cars/${id}`, OPTIONS)
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);

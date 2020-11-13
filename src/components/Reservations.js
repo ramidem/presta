@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { Link, Redirect } from "react-router-dom";
-import { AppContext } from "../AppProvider";
+// import { AppContext } from "../AppProvider";
 
 const Check = () => {
   return (
@@ -27,15 +27,13 @@ const Check = () => {
 };
 
 const Reservations = () => {
-  const [authUser] = useContext(AppContext);
+  // const [authUser] = useContext(AppContext);
   const [reservations, setReservations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const URL = "https://api-presta-app.herokuapp.com";
-
   useEffect(() => {
-    fetch(`${URL}/reservations`, {
+    fetch(`/api/reservations`, {
       headers: {
         Authorization: `Bearer ${localStorage["appState"]}`,
       },

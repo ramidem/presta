@@ -1,0 +1,51 @@
+.carsgrid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  transition: all 0.5s;
+}
+
+.carsgrid_item {
+  min-width: 100px;
+  background-color: white;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  padding-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.carsgrid_item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.carsgrid_item h5 {
+  font-size: 20px;
+  font-weight: normal;
+  margin: 20px 10px 0 10px;
+}
+
+.carsgrid_item h6 {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 20px 10px 0 10px;
+}
+
+.carsgrid_item h6 span {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .carsgrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px;
+  }
+}
+
+@media (min-width: 992px) {
+  .carsgrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+  }
+}

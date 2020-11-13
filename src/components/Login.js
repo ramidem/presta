@@ -20,7 +20,6 @@ const Login = (props) => {
     return <Redirect to="/" />;
   }
 
-  const URL = "https://api-presta-app.herokuapp.com";
   const OPTIONS = {
     method: "post",
     body: JSON.stringify(authUser),
@@ -41,7 +40,7 @@ const Login = (props) => {
 
     setIsLoading(true);
 
-    fetch(`${URL}/users/login`, OPTIONS)
+    fetch("/api/users/login", OPTIONS)
       .then((res) => {
         if (res.status !== 200) {
           setError({

@@ -3,7 +3,8 @@ import { AppProvider } from "./AppProvider";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 
-import Navbar from "./components/Navbar";
+import "./App.css";
+import Navbar from "./components/NavBar/Navbar";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -15,8 +16,8 @@ import CarSingle from "./components/CarSingle";
 import CarEdit from "./components/CarEdit";
 import Reservations from "./components/Reservations";
 import ReservationSingle from "./components/ReservationSingle";
-import "./css/App.css";
 import Error403 from "./Error403";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
             <Error404 />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </AppProvider>
   );

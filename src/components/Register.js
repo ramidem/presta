@@ -25,7 +25,6 @@ const Register = () => {
     return <Redirect to="/login" />;
   }
 
-  const URL = "https://api-presta-app.herokuapp.com";
   const METHOD = {
     method: "post",
     body: JSON.stringify(user),
@@ -46,7 +45,7 @@ const Register = () => {
 
     setIsLoading(true);
 
-    fetch(`${URL}/users/register`, METHOD)
+    fetch("/api/users/register", METHOD)
       .then((res) => {
         if (res.status === 400) {
           setError({

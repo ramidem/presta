@@ -1,0 +1,25 @@
+.navlinks {
+  background-color: #343a40;
+  color: white;
+  font-size: 10px;
+  text-align: right;
+  padding: 10px 0;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.navlinks a {
+  color: #bbb;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.navlinks a:hover {
+  color: white;
+}
+
+.navlinks span {
+  margin: 5px;
+}

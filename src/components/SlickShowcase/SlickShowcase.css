@@ -1,0 +1,41 @@
+.slickshowcase {
+  min-height: 200px;
+  margin: -100px auto 0;
+}
+
+.slickshowcase_item {
+  overflow: hidden;
+  max-width: 600px;
+  position: relative;
+  padding: 10px;
+}
+
+.slickshowcase_item img {
+  height: 350px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.slickshowcase_item_description {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+}
+
+.slickshowcase_item_description h3 + p {
+  line-height: 1;
+}
+
+.slickshowcase_item_description h3 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.slickshowcase_item_description p {
+  color: #d3af37;
+  font-size: 14px;
+}

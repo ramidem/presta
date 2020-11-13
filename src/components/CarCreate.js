@@ -63,7 +63,6 @@ const CarCreate = () => {
 
     formData.append("image", car.image);
 
-    const URL = "https://api-presta-app.herokuapp.com";
     const OPTIONS = {
       method: "post",
       body: formData,
@@ -72,7 +71,7 @@ const CarCreate = () => {
       },
     };
 
-    fetch(`${URL}/cars`, OPTIONS)
+    fetch('/api/cars', OPTIONS)
       .then((res) => {
         if (res.status === 400) {
           setError({
