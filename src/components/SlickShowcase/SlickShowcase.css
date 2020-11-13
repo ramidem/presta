@@ -11,7 +11,7 @@
 }
 
 .slickshowcase_item img {
-  height: 350px;
+  height: 250px;
   object-fit: cover;
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
