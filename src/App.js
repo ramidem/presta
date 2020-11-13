@@ -13,7 +13,7 @@ import Error404 from "./Error404";
 
 import CarCreate from "./components/CarCreate";
 import CarSingle from "./pages/CarSingle/CarSingle";
-import CarEdit from "./components/CarEdit";
+import CarEdit from "./pages/CarEdit/CarEdit";
 import Reservations from "./components/Reservations";
 import ReservationSingle from "./components/ReservationSingle";
 import Error403 from "./Error403";

@@ -1,4 +1,5 @@
 import React from "react";
+import "./InputGroup.css";
 
 const InputGroup = (props) => {
   return (
@@ -8,9 +9,6 @@ const InputGroup = (props) => {
         type={props.type}
         name={props.name}
         id={props.name}
-        className={
-          props.type !== "file" ? "form-control rounded-0" : "form-control-file"
-        }
         min={props.min}
         placeholder={props.placeholder}
         onChange={props.handleChange}

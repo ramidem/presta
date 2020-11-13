@@ -1,0 +1,40 @@
+.car_edit {
+  max-width: 500px;
+  margin: 20px auto;
+}
+.car_edit_daily_rate_manufacturer,
+.car_edit_features {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.car_edit_daily_rate_manufacturer {
+  grid-template-columns: 1fr 1fr;
+}
+
+.car_edit_features {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-selects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-file {
+  margin: 40px 0;
+}
+
+#view {
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary-color);
+}

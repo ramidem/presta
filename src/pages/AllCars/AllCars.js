@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { AppContext } from "../../AppProvider";
 import "./AllCars.css";
 
 const AllCars = () => {
+  const [authUser] = useContext(AppContext);
+
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
@@ -14,6 +17,10 @@ const AllCars = () => {
         setCars(cars);
       });
   }, []);
+
+  if (!authUser.isAuth) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="container">

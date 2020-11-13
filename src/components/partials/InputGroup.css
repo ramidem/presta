@@ -1,0 +1,16 @@
+.form-group {
+}
+
+.form-group label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-color-secondary);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  display: block;
+  margin: 10px 0 20px 0;
+}

@@ -1,11 +1,8 @@
 import React from "react";
+import "./AlertMessage.css";
 
 const AlertMessage = (props) => {
-  return (
-    <div className={"border-0 rounded-0 alert alert-" + props.color}>
-      {props.message}
-    </div>
-  );
+  return <div className={"alert alert-" + props.color}>{props.message}</div>;
 };
 
 export default AlertMessage;
