@@ -3,7 +3,9 @@ import { useParams, Redirect } from "react-router-dom";
 import moment from "moment";
 import { AppContext } from "../../AppProvider";
 
-const ReservationSingle = (props) => {
+import "./ReservationSingle.css";
+
+const ReservationSingle = () => {
   let { id } = useParams();
 
   const [authUser] = useContext(AppContext);
@@ -66,9 +68,9 @@ const ReservationSingle = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!authUser.isAuth) {
-    return <Redirect to="/not-allowed" />;
-  }
+  // if (!authUser.isAuth) {
+  //   return <Redirect to="/not-allowed" />;
+  // }
 
   let created = moment(reservation.createdAt).format("MMM DD, YYYY");
   let from = moment(reservation.startDate).format("MMM DD, YYYY");
@@ -76,11 +78,11 @@ const ReservationSingle = (props) => {
 
   return (
     <div className="container">
-      <div className="row mt-5">
-        <div className="col-12 col-md-8 col-lg-6 mx-auto bg-white shadow p-5">
-          <h4 className="text-center">Reservations</h4>
-          <hr />
+      <div className="content_wrapper">
+        <h2>Reservations</h2>
+        <hr />
 
+        <div className="reservation_single">
           <table className="table">
             <tbody>
               <tr>
@@ -99,9 +101,16 @@ const ReservationSingle = (props) => {
 
               <tr>
                 <th scope="row" className="text-muted">
-                  Car
+                  Car Model
                 </th>
                 <td className="text-right">{car.model}</td>
+              </tr>
+
+              <tr>
+                <th scope="row" className="text-muted">
+                  Manufacturer
+                </th>
+                <td className="text-right">{car.manufacturer}</td>
               </tr>
 
               <tr>
@@ -131,69 +140,38 @@ const ReservationSingle = (props) => {
                 </th>
                 <td className="text-right">{reservation.status}</td>
               </tr>
-              {authUser.isAdmin ? (
-                <tr>
-                  <th scope="row" colSpan="2">
-                    <div className="row">
-                      <div className="col-6"></div>
-                      <div className="col-6">
-                        <form
-                          className="input-group"
-                          onSubmit={handleStatusUpdate}
-                        >
-                          <select
-                            id="inputState"
-                            class="form-control"
-                            name="status"
-                            onChange={handleStatusChange}
-                            disabled={isLoading}
-                          >
-                            <option value="Pending">Pending</option>
-                            <option value="Approved">Approved</option>
-                            <option value="Returned">Returned</option>
-                          </select>
-                          <div className="input-group-append">
-                            <button
-                              className="btn btn-outline-primary"
-                              disabled={isLoading}
-                            >
-                              Update
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </th>
-                </tr>
-              ) : (
-                ""
-              )}
             </tbody>
           </table>
+          {authUser.isAdmin ? (
+            <div className="reservation_single_update_btn">
+              <form className="input-group" onSubmit={handleStatusUpdate}>
+                <select
+                  id="inputState"
+                  class="form-control"
+                  name="status"
+                  onChange={handleStatusChange}
+                  disabled={isLoading}
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Returned">Returned</option>
+                </select>
+                <button className="btn" disabled={isLoading}>
+                  Update
+                </button>
+              </form>
+            </div>
+          ) : (
+            ""
+          )}
 
-          <div className="row">
-            <div className="col">
-              <div className="card mb-3 border-0 rounded-0">
-                <div className="row no-gutters">
-                  <div className="col-md-4">
-                    <img
-                      src={
-                        car.image
-                          ? `${URL}/${car.image}`
-                          : "https://dummyimage.com/800x600/474747/d3af37&text=presta%20car%20rental"
-                      }
-                      className="card-img"
-                      alt={car.model}
-                    />
-                  </div>
-                  <div className="col-md-8">
-                    <div className="card-body">
-                      <h5 className="card-title">{car.model}</h5>
-                      <p className="card-text">{car.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <hr />
+
+          <div className="reservation_item-details">
+            <img src={car.image} className="card-img" alt={car.model} />
+            <div>
+              <h5>{car.model}</h5>
+              <p>{car.description}</p>
             </div>
           </div>
         </div>
