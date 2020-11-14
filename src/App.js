@@ -11,11 +11,11 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Error404 from "./Error404";
 
-import CarCreate from "./components/CarCreate";
+import CarCreate from "./pages/CarCreate/CarCreate";
 import CarSingle from "./pages/CarSingle/CarSingle";
 import CarEdit from "./pages/CarEdit/CarEdit";
-import Reservations from "./components/Reservations";
-import ReservationSingle from "./components/ReservationSingle";
+import Reservations from "./pages/Reservations/Reservations";
+import ReservationSingle from "./pages/Reservations/ReservationSingle";
 import Error403 from "./Error403";
 import Footer from "./components/Footer/Footer";
 import AllCars from "./pages/AllCars/AllCars";

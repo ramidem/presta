@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import moment from "moment";
-import { AppContext } from "../AppProvider";
+import { AppContext } from "../../AppProvider";
 
 const ReservationSingle = (props) => {
   let { id } = useParams();

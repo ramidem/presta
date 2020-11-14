@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
-import AlertMessage from "./partials/AlertMessage";
-import InputGroup from "./partials/InputGroup";
+import AlertMessage from "../../components/partials/AlertMessage";
+import InputGroup from "../../components/partials/InputGroup";
 import { Redirect } from "react-router-dom";
-import { AppContext } from "../AppProvider";
+import { AppContext } from "../../AppProvider";
+
+import "./CarCreate.css";
 
 const CarCreate = () => {
   const [authUser] = useContext(AppContext);
@@ -71,7 +73,7 @@ const CarCreate = () => {
       },
     };
 
-    fetch('/api/cars', OPTIONS)
+    fetch("/api/cars", OPTIONS)
       .then((res) => {
         if (res.status === 400) {
           setError({
@@ -101,11 +103,11 @@ const CarCreate = () => {
 
   return (
     <div className="container">
-      <div className="row mt-5">
-        <div className="col-12 col-md-8 col-lg-6 mx-auto bg-white shadow p-5">
-          <h4 className="text-center">Create Car</h4>
-          <hr />
+      <div className="content_wrapper">
+        <h2>Create Car</h2>
+        <hr />
 
+        <div className="car_create">
           {error.hasError ? (
             <AlertMessage color={error.color} message={error.message} />
           ) : (
@@ -120,64 +122,56 @@ const CarCreate = () => {
               handleChange={handleChange}
             />
 
-            <div className="row">
-              <div className="col-8">
-                <InputGroup
-                  name="manufacturer"
-                  type="text"
-                  displayName="Manufacturer"
-                  handleChange={handleChange}
-                />
-              </div>
+            <div className="car_create_daily_rate_manufacturer">
+              <InputGroup
+                name="manufacturer"
+                type="text"
+                displayName="Manufacturer"
+                handleChange={handleChange}
+              />
 
-              <div className="col-4">
-                <InputGroup
-                  name="dailyRate"
-                  type="number"
-                  min="0"
-                  displayName="Daily Rate"
-                  handleChange={handleChange}
-                />
-              </div>
+              <InputGroup
+                name="dailyRate"
+                type="number"
+                min="0"
+                displayName="Daily Rate"
+                handleChange={handleChange}
+              />
             </div>
 
-            <div className="row">
-              <div className="col-4">
-                <InputGroup
-                  name="doors"
-                  type="number"
-                  min="0"
-                  displayName="Doors"
-                  handleChange={handleChange}
-                />
-              </div>
+            <div className="car_create_features">
+              <InputGroup
+                name="doors"
+                type="number"
+                min="0"
+                displayName="Doors"
+                handleChange={handleChange}
+              />
 
-              <div className="col-4">
-                <InputGroup
-                  name="seats"
-                  type="number"
-                  min="0"
-                  displayName="Seats"
-                  handleChange={handleChange}
-                />
-              </div>
+              <InputGroup
+                name="seats"
+                type="number"
+                min="0"
+                displayName="Seats"
+                handleChange={handleChange}
+              />
 
-              <div className="col-4">
-                <InputGroup
-                  name="bags"
-                  type="number"
-                  min="0"
-                  displayName="Bags"
-                  handleChange={handleChange}
-                />
-              </div>
+              <InputGroup
+                name="bags"
+                type="number"
+                min="0"
+                displayName="Bags"
+                handleChange={handleChange}
+              />
             </div>
 
-            <InputGroup
-              name="image"
-              type="file"
-              handleChange={handleChangeFile}
-            />
+            <div className="form-file">
+              <InputGroup
+                name="image"
+                type="file"
+                handleChange={handleChangeFile}
+              />
+            </div>
 
             <div className="form-group">
               <label htmlFor="description">Description</label>
@@ -186,25 +180,17 @@ const CarCreate = () => {
                 id="description"
                 className="form-control rounded-0"
                 onChange={handleChange}
+                rows="6"
+                cols="50"
               />
             </div>
 
-            <div className="row d-flex justify-content-between align-items-end px-2">
+            <div className="buttons">
               <button
                 className="btn btn-warning round-full border-0 mt-3"
                 disabled={isLoading}
               >
-                {isLoading ? (
-                  <>
-                    <div
-                      className="spinner-border spinner-border-sm text-light"
-                      role="status"
-                    ></div>
-                    &nbsp; Create Car
-                  </>
-                ) : (
-                  "Create Car"
-                )}
+                Create Car
               </button>
             </div>
           </form>
