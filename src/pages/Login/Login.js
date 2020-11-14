@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
-import InputGroup from "./partials/InputGroup";
 import { Redirect } from "react-router-dom";
-import AlertMessage from "./partials/AlertMessage";
-import { AppContext } from "../AppProvider";
+import AlertMessage from "../../components/partials/AlertMessage";
+import InputGroup from "../../components/partials/InputGroup";
+import { AppContext } from "../../AppProvider";
 
-const Login = (props) => {
+import "./Login.css";
+
+const Login = () => {
   const [authUser, setAuthUser] = useContext(AppContext);
 
   const [error, setError] = useState({
@@ -73,50 +75,37 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row mt-5">
-        <div className="col-8 col-md-6 col-lg-4 mx-auto bg-white shadow p-4">
-          <h4 className="text-center">Login</h4>
-          <hr />
+    <div className="content_wrapper login_container">
+      <h2>Login</h2>
+      <hr />
+      <div className="login">
+        {error.hasError ? (
+          <AlertMessage color={error.color} message={error.message} />
+        ) : (
+          ""
+        )}
 
-          {error.hasError ? (
-            <AlertMessage color={error.color} message={error.message} />
-          ) : (
-            ""
-          )}
+        <form onSubmit={handleSubmit}>
+          <InputGroup
+            name="username"
+            type="text"
+            displayName="Username"
+            handleChange={handleChange}
+          />
+          <InputGroup
+            name="password"
+            type="password"
+            displayName="Password"
+            handleChange={handleChange}
+          />
 
-          <form onSubmit={handleSubmit}>
-            <InputGroup
-              name="username"
-              type="text"
-              displayName="Username"
-              handleChange={handleChange}
-            />
-            <InputGroup
-              name="password"
-              type="password"
-              displayName="Password"
-              handleChange={handleChange}
-            />
-
-            <button
-              className="btn btn-warning round-full border-0 mt-3"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <div
-                    className="spinner-border spinner-border-sm text-light"
-                    role="status"
-                  ></div>
-                  &nbsp; Login
-                </>
-              ) : (
-                "Login"
-              )}
-            </button>
-          </form>
-        </div>
+          <button
+            className="btn btn-warning round-full border-0 mt-3"
+            disabled={isLoading}
+          >
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );

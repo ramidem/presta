@@ -68,9 +68,9 @@ const ReservationSingle = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // if (!authUser.isAuth) {
-  //   return <Redirect to="/not-allowed" />;
-  // }
+  if (!authUser.isAuth) {
+    return <Redirect to="/" />;
+  }
 
   let created = moment(reservation.createdAt).format("MMM DD, YYYY");
   let from = moment(reservation.startDate).format("MMM DD, YYYY");

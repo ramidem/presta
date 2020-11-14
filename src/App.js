@@ -5,20 +5,20 @@ import PrivateRoute from "./PrivateRoute";
 
 import "./App.css";
 import Navbar from "./components/NavBar/Navbar";
-import Home from "./components/Home";
-import Register from "./components/Register";
-import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Error404 from "./Error404";
+import Error403 from "./Error403";
 
-import CarCreate from "./pages/CarCreate/CarCreate";
+import Home from "./pages/Home/Home";
+import AllCars from "./pages/AllCars/AllCars";
 import CarSingle from "./pages/CarSingle/CarSingle";
+import CarCreate from "./pages/CarCreate/CarCreate";
 import CarEdit from "./pages/CarEdit/CarEdit";
 import Reservations from "./pages/Reservations/Reservations";
 import ReservationSingle from "./pages/Reservations/ReservationSingle";
-import Error403 from "./Error403";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import Footer from "./components/Footer/Footer";
-import AllCars from "./pages/AllCars/AllCars";
 
 function App() {
   return (

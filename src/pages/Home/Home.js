@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CarsGrid from "./CarsGrid/CarsGrid";
-import Jumbotron from "./Jumbotron/Jumbotron";
-import SlickShowcase from "./SlickShowcase/SlickShowcase";
+import CarsGrid from "../../components/CarsGrid/CarsGrid";
+import Jumbotron from "../../components/Jumbotron/Jumbotron";
+import SlickShowcase from "../../components/SlickShowcase/SlickShowcase";
 
 const Home = () => {
   const [cars, setCars] = useState([]);
