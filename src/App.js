@@ -6,8 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import "./App.css";
 import Navbar from "./components/NavBar/Navbar";
 import Logout from "./components/Logout";
-import Error404 from "./Error404";
-import Error403 from "./Error403";
+import Error404 from "./pages/404/Error404";
 
 import Home from "./pages/Home/Home";
 import AllCars from "./pages/AllCars/AllCars";
@@ -65,10 +64,6 @@ function App() {
           <PrivateRoute exact path="/reservation/:id">
             <ReservationSingle />
           </PrivateRoute>
-
-          <Route path="/not-allowed">
-            <Error403 />
-          </Route>
 
           <Route path="*">
             <Error404 />

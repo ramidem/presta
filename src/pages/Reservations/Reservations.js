@@ -54,7 +54,7 @@ const Reservations = () => {
   }, []);
 
   if (isRedirect) {
-    return <Redirect to="/not-allowed" />;
+    return <Redirect to="/" />;
   }
 
   let reservationsList = reservations.map((reservation) => {

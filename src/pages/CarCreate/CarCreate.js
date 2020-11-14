@@ -98,7 +98,7 @@ const CarCreate = () => {
   };
 
   if (!authUser.isAuth) {
-    return <Redirect to="/not-allowed" />;
+    return <Redirect to="/" />;
   }
 
   return (
